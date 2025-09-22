@@ -23,6 +23,7 @@ Este projeto é uma extensão do CRUD de músicas e álbuns em Laravel, agora in
 - Na listagem de músicas, exiba todos os artistas relacionados a cada música.
 
 
+
 ## Como executar os testes
 
 Execute os testes automatizados para garantir que sua implementação está correta:
@@ -39,54 +40,6 @@ Todos os testes devem passar para que sua solução seja considerada válida.
 - Consulte os testes em `tests/Feature/MusicArtistTest.php` para entender o comportamento esperado.
 - Use migrations para garantir a estrutura correta do banco de dados.
 - Implemente os relacionamentos Eloquent conforme a documentação oficial do Laravel.
-
-Bons estudos e boa implementação!
-
-## Objetivo≈
-
-Praticar o desenvolvimento de rotas, controladores, migrations e relacionamentos no Laravel, garantindo que todas as funcionalidades estejam cobertas por testes automatizados.
-
-## Antes de começar
-
-Execute `composer install` para instalar as dependências do projeto, e `php artisan migrate --seed` para criar e popular as tabelas.
-
-## Rúbricas dos Requisitos
-
-### 1. Migration da tabela albums
-- Crie uma migration para a tabela `albums` contendo as colunas: `id`, `name`, `year`, `url_img`, `created_at`, `updated_at`.
-- Certifique-se de que a migration está registrada e pode ser migrada normalmente.
-- O teste automatizado valida a existência da tabela e das colunas.
-
-### 2. Migration da tabela musics com relação a albums
-- Adicione a coluna `album_id` na migration de `musics`.
-- Implemente a constraint de chave estrangeira relacionando `album_id` com a tabela `albums`.
-- O teste automatizado verifica a existência da coluna e da relação.
-
-### 3. Relacionamento N:1 entre Album e Music
-- Implemente o relacionamento nas models:
-	- `Album` deve ter o método `musics()` (hasMany).
-	- `Music` deve ter o método `album()` (belongsTo).
-- O teste automatizado verifica se o relacionamento está funcional.
-
-### 4. Listagem de músicas exibindo o nome do álbum
-- Na rota `/music`, cada música listada deve exibir o nome e imagem do álbum correspondentes.
-- O teste automatizado verifica se o nome e imagem do álbum aparecem na listagem.
-
-### 5. Exibição de músicas de um álbum
-- No método `show` do controller de álbuns, exiba todas as músicas pertencentes ao álbum selecionado.
-- O teste automatizado valida se as músicas do álbum são exibidas corretamente.
-
-## Como executar os testes
-
-Execute os testes automatizados para garantir que sua implementação está correta:
-
-```bash
-php artisan test --filter=AlbumMusicTest
-```
-
-Todos os testes devem passar para que sua solução seja considerada válida.
-
-## Dicas
 
 Bons estudos e boa implementação!
 
