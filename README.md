@@ -1,7 +1,7 @@
 
 # Projeto MusicLaravelCRUD — N:M (Músicas e Artistas)
 
-Este projeto é uma extensão do CRUD de músicas e álbuns em Laravel, agora incluindo o relacionamento N:M (muitos para muitos) entre músicas e artistas. O objetivo é garantir que cada música possa ter vários artistas e cada artista possa estar em várias músicas, utilizando boas práticas de modelagem, migrations, Eloquent e testes automatizados.
+Este projeto é uma extensão do CRUD de músicas e álbuns em Laravel, agora incluindo o relacionamento N:M (muitos para muitos) entre músicas e artistas. O objetivo é garantir que cada música possa ter vários artistas e cada artista possa estar em várias músicas, utilizando boas práticas de modelagem, migrations, Eloquent.
 
 ## Requisitos
 
@@ -35,7 +35,6 @@ php artisan test --filter=MusicArtistTest
 Todos os testes devem passar para que sua solução seja considerada válida.
 
 ## Dicas
-- Utilize factories para criar instâncias de `Artist` e `Music` nos testes e seeders.
 - Siga o padrão RESTful para rotas e controllers.
 - Consulte os testes em `tests/Feature/MusicArtistTest.php` para entender o comportamento esperado.
 - Use migrations para garantir a estrutura correta do banco de dados.
