@@ -18,10 +18,8 @@ Este projeto é uma extensão do CRUD de músicas e álbuns em Laravel, agora in
 	- `Artist` deve ter o método `musics()` (belongsToMany).
 	- `Music` deve ter o método `artists()` (belongsToMany).
 
-### 4. Cadastro e exibição de artistas em músicas
-- Permita associar múltiplos artistas ao cadastrar ou editar uma música.
-- Na listagem de músicas, exiba todos os artistas relacionados a cada música.
-
+### 4. Exibição de artistas em músicas `GET /musics`
+- Na listagem de músicas, exiba todos os artistas relacionados a cada música, altere a view correspondente para criar essa funcionalidade.
 
 
 ## Como executar os testes
