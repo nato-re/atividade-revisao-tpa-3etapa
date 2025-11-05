@@ -139,6 +139,17 @@ Integrar com API externa do Quotable para buscar citações inspiradoras, enriqu
 
 ### 📁 ESTRUTURA INICIAL DO PROJETO
 
+**Passo 0.0 - Comando inicias**
+```sh
+ren .env.example .env
+composer install
+npm install
+npm run build
+php artisan key:generate
+php artisan migrate
+php artisan serve
+```
+
 **Passo 0.1 - Verifique a estrutura atual:**
 ```bash
 # Execute no terminal para ver sua estrutura
