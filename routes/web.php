@@ -1,15 +1,24 @@
 <?php
 
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\TaskController;
 use Illuminate\Support\Facades\Route;
 
-
-use App\Http\Controllers\MusicController;
-
 Route::get('/', function () {
-    return redirect()->route('music.index');
+    return view('welcome');
 });
 
-Route::get('/musics', [MusicController::class, 'index'])->name('music.index');
-Route::get('/musics/create', [MusicController::class, 'create'])->name('music.create');
-Route::post('/musics', [MusicController::class, 'store'])->name('music.store');
-Route::get('/musics/{music}', [MusicController::class, 'show'])->name('music.show');
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth', 'verified'])->name('dashboard');
+
+Route::middleware('auth')->group(function () {
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+
+    // Task routes
+    Route::resource('tasks', TaskController::class);
+});
+
+require __DIR__.'/auth.php';
