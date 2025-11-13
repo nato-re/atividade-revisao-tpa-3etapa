@@ -169,7 +169,7 @@ public function destroy(Task $task)
     $task->delete();
     
     // Redireciona de volta com mensagem de sucesso
-    return redirect()->back()->with('success', 'Tarefa excluída com sucesso!');
+    return redirect("/")->with('success', 'Tarefa excluída com sucesso!');
 }
 ```
 
@@ -223,6 +223,11 @@ public function create()
 {
     // Retorna a view com formulário de criação
     return view('tasks.create');
+}
+
+public function store(Request $request){
+    Task::create($request->all());
+    return redirect("/");
 }
 ```
 
@@ -296,11 +301,6 @@ public function store(Request $request)
             'required',
             'string',
             'max:255',
-            function ($attribute, $value, $fail) {
-                if (strlen(trim($value)) < 3) {
-                    $fail('O título deve ter pelo menos 3 caracteres.');
-                }
-            }
         ],
         'description' => 'nullable|string|max:1000',
     ], [
@@ -308,9 +308,8 @@ public function store(Request $request)
         'title.max' => 'O título não pode ter mais de 255 caracteres.',
         'description.max' => 'A descrição não pode ter mais de 1000 caracteres.'
     ]);
-
-    // Aqui vamos adicionar a associação com usuário depois
-    dd($validatedData); // Para testar a validação
+    Task::create($validatedData);
+    return redirect("/");
 }
 ```
 
@@ -328,6 +327,7 @@ public function store(Request $request)
 // app/Models/User.php
 class User extends Authenticatable
 {
+    // ...
     // Relacionamento: Um usuário tem muitas tarefas
     public function tasks()
     {
@@ -338,6 +338,7 @@ class User extends Authenticatable
 // app/Models/Task.php
 class Task extends Model
 {
+    // ...
     // Relacionamento: Uma tarefa pertence a um usuário
     public function user()
     {
@@ -374,7 +375,7 @@ public function store(Request $request)
     // 🔐 ASSOCIA AUTOMATICAMENTE AO USUÁRIO LOGADO
     $task = $request->user()->tasks()->create($validatedData);
 
-    return redirect()->route('tasks.index')
+    return redirect("/tasks")
                      ->with('success', "Tarefa '{$task->title}' criada com sucesso!");
 }
 ```
@@ -468,7 +469,7 @@ public function destroy(Task $task)
     $taskTitle = $task->title;
     $task->delete();
 
-    return redirect()->back()
+    return redirect("/tasks")
                      ->with('success', "Tarefa '{$taskTitle}' excluída com sucesso!");
 }
 ```
